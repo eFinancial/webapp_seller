@@ -10,10 +10,10 @@
     <h3 id="pa">Gezahlt (in €)</h3>
   </div>
   <div>
-    <input type="text" (change)="change()" [(ngModel)]="product.name" name="p1">
-    <input type="number" (change)="change()" [(ngModel)]="product.count" name="c1" id="anz">
-    <input type="number" (change)="change()" value="0" [(ngModel)]="product.itemPrice" id="num" step=".01" name="b1">
-    <input type="number" (change)="change()" value="0" [(ngModel)]="invoice.customerPaid" id="paid" step=".01"><br>
+    <input type="text" [(ngModel)]="product.name" name="p1">
+    <input type="number" [(ngModel)]="product.count" name="c1" id="anz">
+    <input type="number" value="0" [(ngModel)]="product.itemPrice" id="num" step=".01" name="b1">
+    <input type="number" value="0" [(ngModel)]="invoice.customerPaid" id="paid" step=".01"><br>
   </div>
   <div *ngFor="let singleProduct of products">
     {{singleProduct.count}}x
@@ -23,5 +23,13 @@
   <button (click)="submit()">Produkt hinzufügen</button>
   <a href="qr-code"><button (click)="finishBuyingProcess()">Kauf abschließen</button></a>
 </div>
-<app-qr-code *ngIf="buyinProcessFinished"></app-qr-code>
+<div *ngIf="buyinProcessFinished">
+  <h1>
+    Scannen Sie den QR-Code ein.
+  </h1>
+  <ngx-qrcode [qrc-element-type]="elementType" [qrc-value] = "qrValue">
+  </ngx-qrcode>
+  <button (click)="loadQRData()">QR-Code</button>
+  <button (click)="resetBuyingProcess()">Nächster Kunde</button>
+</div>
 </body>

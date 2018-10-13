@@ -11,50 +11,48 @@ import { Router } from '@angular/router';
 export class ListComponent implements OnInit {
 ar: number[];
   price: number;
-price2: number = 0;
-product: Product = {
-  name: '',
-  count: 0,
-  itemPrice: 0
-};
-address: Address = {
-  street: '',
-  zip: '',
-  city: ''
-};
-seller: Seller = {
-  name: '',
-  address: null,
-  ustIdNr: '',
-  storeID: '',
-  checkoutLane: 0
-};
-products: Product[] = [];
-invoice: Invoice = {
-  date: '',
-  billNo: 0,
-  seller: null,
-  products: [],
-  totalCostBrutto: 0,
-  totalCostNetto: 0,
-  customerPaid: 0,
-  tax: 0
-};
-invoiceData: InvoiceData = {
-  invoice: null,
-  hash: ''
-};
+  price2 = 0;
+  product: Product = {
+    name: '',
+    count: 0,
+    itemPrice: 0
+  };
+  address: Address = {
+    street: '',
+    zip: '',
+    city: ''
+  };
+  seller: Seller = {
+    name: '',
+    address: null,
+    ustIdNr: '',
+    storeID: '',
+    checkoutLane: 0
+  };
+  products: Product[] = [];
+  invoice: Invoice = {
+    date: '',
+    billNo: 0,
+    seller: null,
+    products: [],
+    totalCostBrutto: 0,
+    totalCostNetto: 0,
+    customerPaid: 0,
+    tax: 0
+  };
+  invoiceData: InvoiceData = {
+    invoice: null,
+    hash: ''
+  };
+  elementType: 'url' | 'canvas' | 'img' = 'url';
   buyinProcessFinished = false;
+  qrValue: string;
 
 
   constructor(private qrService: QrService) { }
-  //private router: Router;
   ngOnInit() {
   }
 
-  change() {
-
-  }
   submit() {
     this.products.push(this.product);
     this.invoice.totalCostBrutto += this.product.itemPrice * this.product.count;
@@ -73,20 +71,34 @@ invoiceData: InvoiceData = {
     this.invoice.customerPaid = 0;
   }
 
+  loadQRData() {
+    this.qrValue = JSON.stringify(this.invoiceData);
+  }
+
+  resetBuyingProcess() {
+    this.buyinProcessFinished = false;
+  }
+
   finishBuyingProcess() {
     this.createInvoice();
-
-    this.qrService.setQRData(JSON.stringify(this.invoiceData));
-    console.log(this.invoiceData);
     this.buyinProcessFinished = true;
-    //this.router.navigate(['/qr-code']);
   }
 
    billn: number = Math.floor(Math.random() * (10000 - 100) + 100);
 
+  makeid() {
+    let text = '';
+    const possible = 'abcdef0123456789';
+
+    for (let i = 0; i < 5; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    return text;
+  }
 
   private createInvoice() {
-    this.invoiceData.hash = 'afee217000';
+    this.invoiceData.hash = this.makeid();
     this.invoiceData.invoice = this.invoice;
     this.address.street = 'Ortenaustraße 14';
     this.address.zip = '77653';
@@ -102,7 +114,8 @@ invoiceData: InvoiceData = {
     this.invoice.products = this.products;
     this.invoice.tax = 0.19;
     this.invoice.customerPaid = this.price2;
-    this.invoice.totalCostNetto = this.invoice.totalCostBrutto - ((this.invoice.totalCostBrutto / (1 + this.invoice.tax)) * this.invoice.tax);
+    this.invoice.totalCostNetto
+      = this.invoice.totalCostBrutto - ((this.invoice.totalCostBrutto / (1 + this.invoice.tax)) * this.invoice.tax);
   }
 }
 

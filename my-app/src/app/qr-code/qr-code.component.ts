@@ -13,9 +13,6 @@ export class QrCodeComponent implements OnInit {
   qrValue = '';
   constructor(private qrService: QrService) { }
  // private router: Router;
-  loadQRData() {
-    this.qrValue = this.qrService.getQRData();
-  }
 
   ngOnInit() {
 
