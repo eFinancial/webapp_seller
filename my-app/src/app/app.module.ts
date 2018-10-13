@@ -6,7 +6,6 @@ import { ListComponent } from './list/list.component';
 import { QrCodeComponent } from './qr-code/qr-code.component';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import {QrService} from '../services/qr.service';
-import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,8 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     FormsModule,
-    NgxQRCodeModule,
-    AppRoutingModule
+    NgxQRCodeModule
   ],
   providers: [
     QrService

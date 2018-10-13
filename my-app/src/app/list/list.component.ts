@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {isoStringToDate} from '@angular/common/src/i18n/format_date';
 import {QrService} from '../../services/qr.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -71,20 +69,17 @@ ar: number[];
     this.invoice.customerPaid = 0;
   }
 
-  loadQRData() {
-    this.qrValue = JSON.stringify(this.invoiceData);
-  }
-
   resetBuyingProcess() {
+    this.resetProducts();
     this.buyinProcessFinished = false;
   }
 
   finishBuyingProcess() {
     this.createInvoice();
+    this.qrValue = JSON.stringify(this.invoiceData);
     this.buyinProcessFinished = true;
   }
 
-   billn: number = Math.floor(Math.random() * (10000 - 100) + 100);
 
   makeid() {
     let text = '';
@@ -110,12 +105,16 @@ ar: number[];
     this.seller.checkoutLane = 3;
     this.invoice.seller = this.seller;
     this.invoice.date = new Date().toISOString();
-    this.invoice.billNo = this.billn;
+    this.invoice.billNo = Math.floor(Math.random() * (10000 - 100) + 100);
     this.invoice.products = this.products;
     this.invoice.tax = 0.19;
     this.invoice.customerPaid = this.price2;
     this.invoice.totalCostNetto
       = this.invoice.totalCostBrutto - ((this.invoice.totalCostBrutto / (1 + this.invoice.tax)) * this.invoice.tax);
+  }
+
+  private resetProducts() {
+    this.products = [];
   }
 }
 

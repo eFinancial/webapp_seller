@@ -21,7 +21,7 @@
     {{singleProduct.itemPrice}}€
   </div>
   <button (click)="submit()">Produkt hinzufügen</button>
-  <a href="qr-code"><button (click)="finishBuyingProcess()">Kauf abschließen</button></a>
+  <button (click)="finishBuyingProcess()">Kauf abschließen</button>
 </div>
 <div *ngIf="buyinProcessFinished">
   <h1>
@@ -29,7 +29,6 @@
   </h1>
   <ngx-qrcode [qrc-element-type]="elementType" [qrc-value] = "qrValue">
   </ngx-qrcode>
-  <button (click)="loadQRData()">QR-Code</button>
   <button (click)="resetBuyingProcess()">Nächster Kunde</button>
 </div>
 </body>
