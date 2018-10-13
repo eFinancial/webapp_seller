@@ -89,21 +89,32 @@
         font-size: 14px;
         border: 0;
       }
+      input {
+        color: black;
+        padding-left: 15px;
+        margin: 5px 10px;
+        border-radius: 25px;
+        border: 1px solid $color-orange;
+        height: 35px;
+      }
     }
 
     .qrcode {
       margin-top: 25px;
     }
-
-    .done-button {
-      margin-top: 85px;
-      width: 200px;
-      height: 39px;
-      color: white;
-      background-color: $color-orange;
-      border-radius: 25px;
-      font-size: 14px;
-      border: 0;
-    }
+  }
+  .done-button {
+    position: absolute;
+    margin: auto;
+    top: 450px;
+    left: 0;
+    right: 0;
+    width: 200px;
+    height: 39px;
+    color: white;
+    background-color: $color-orange;
+    border-radius: 25px;
+    font-size: 14px;
+    border: 0;
   }
 }

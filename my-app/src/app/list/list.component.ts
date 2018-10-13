@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ListComponent implements OnInit {
 ar: number[];
   price: number;
-  price2 = 0;
+  price2;
   product: Product = {
     name: '',
     count: null,
@@ -53,9 +53,6 @@ ar: number[];
   submit() {
     this.products.push(this.product);
     this.invoice.totalCostBrutto += this.product.itemPrice * this.product.count;
-    this.price = this.invoice.totalCostBrutto;
-    this.price2 = this.invoice.customerPaid;
-    console.log(this.price2);
     this.resetProduct();
   }
 
@@ -75,6 +72,7 @@ ar: number[];
 
   finishBuyingProcess() {
     this.createInvoice();
+    console.log(this.invoiceData);
     this.qrValue = JSON.stringify(this.invoiceData);
     this.buyinProcessFinished = true;
   }
@@ -92,8 +90,6 @@ ar: number[];
   }
 
   private createInvoice() {
-    this.invoiceData.hash = this.makeid();
-    this.invoiceData.invoice = this.invoice;
     this.address.street = 'Ortenaustraße 14';
     this.address.zip = '77653';
     this.address.city = 'Offenburg';
@@ -108,8 +104,9 @@ ar: number[];
     this.invoice.products = this.products;
     this.invoice.tax = 0.19;
     this.invoice.customerPaid = this.price2;
-    this.invoice.totalCostNetto
-      = this.invoice.totalCostBrutto - ((this.invoice.totalCostBrutto / (1 + this.invoice.tax)) * this.invoice.tax);
+    this.invoice.totalCostNetto = Math.round(this.invoice.totalCostBrutto * 0.81 * 100) / 100;
+    this.invoiceData.hash = this.makeid();
+    this.invoiceData.invoice = this.invoice;
   }
 
   private resetProducts() {
