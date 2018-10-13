@@ -1,6 +1,15 @@
-<div style="text-align:center">
+
+<body style="text-align:center;">
 <h1>
   Scannen Sie den QR-Code ein.
 </h1>
-  <button id="kbutton">nächster Kunde</button>
-</div>
+
+
+<ngx-qrcode [qrc-element-type]="elementType" [qrc-value] = "qrValue">
+</ngx-qrcode>
+
+
+<a href="qr-code"><button id="kbutton">nächster Kunde</button></a>
+<button (click)="loadQRData()" id="qrbutton">QR-Code</button>
+
+</body>

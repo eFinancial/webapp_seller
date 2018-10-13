@@ -1,33 +1,27 @@
-<div style="text-align:center">
-<h1>
-  Neuer Kunde
-</h1>
-<p id="p">Produkt</p>
-<p id="b">Betrag</p>
-<form action="/">
-  <input type="text" (onChange)="change()" name="p1">
-  <input type="text" value="0" name="b1"><br>
-  <input type="text" name="p2">
-  <input type="text" value="0" name="b2"><br>
-  <input type="text" name="p3">
-  <input type="text" value="0" name="b3"><br>
-  <input type="text" name="p4">
-  <input type="text" value="0" name="b4"><br>
-  <input type="text" name="p5">
-  <input type="text" value="0" name="b5"><br>
-  <input type="text" name="p6">
-  <input type="text" value="0" name="b6"><br>
-  <input type="text" name="p7">
-  <input type="text" value="0" name="b7"><br>
-  <input type="text" name="p8">
-  <input type="text" value="0" name="b8"><br>
-  <input type="text" name="p9">
-  <input type="text" value="0" name="b9"><br>
-  <input type="text" name="p10">
-  <input type="text" value="0" name="b10"><br>
-  <p>Gesamtbetrag</p>
-  <p id="b"> {{gBetrag}}</p><br>
-  <input type="submit" value="senden">
-</form>
-
+<body style="text-align:center;">
+<div ng-app="" *ngIf="!buyinProcessFinished">
+  <h1>
+    Neuer Kunde
+  </h1>
+  <div id="category">
+    <h3 id="p">Produkt</h3>
+    <h3 id="c"> Anzahl</h3>
+    <h3 id="b">Betrag (in €)</h3>
+    <h3 id="pa">Gezahlt (in €)</h3>
+  </div>
+  <div>
+    <input type="text" (change)="change()" [(ngModel)]="product.name" name="p1">
+    <input type="number" (change)="change()" [(ngModel)]="product.count" name="c1" id="anz">
+    <input type="number" (change)="change()" value="0" [(ngModel)]="product.itemPrice" id="num" step=".01" name="b1">
+    <input type="number" (change)="change()" value="0" [(ngModel)]="invoice.customerPaid" id="paid" step=".01"><br>
+  </div>
+  <div *ngFor="let singleProduct of products">
+    {{singleProduct.count}}x
+    {{singleProduct.name}},
+    {{singleProduct.itemPrice}}€
+  </div>
+  <button (click)="submit()">Produkt hinzufügen</button>
+  <a href="qr-code"><button (click)="finishBuyingProcess()">Kauf abschließen</button></a>
 </div>
+<app-qr-code *ngIf="buyinProcessFinished"></app-qr-code>
+</body>

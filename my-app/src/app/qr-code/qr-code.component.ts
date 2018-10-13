@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {QrService} from '../../services/qr.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-qr-code',
@@ -7,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QrCodeComponent implements OnInit {
 
-
-  constructor() { }
+  elementType: 'url' | 'canvas' | 'img' = 'url';
+  qrValue = '';
+  constructor(private qrService: QrService) { }
+ // private router: Router;
+  loadQRData() {
+    this.qrValue = this.qrService.getQRData();
+  }
 
   ngOnInit() {
+
   }
+
+
 
 }
