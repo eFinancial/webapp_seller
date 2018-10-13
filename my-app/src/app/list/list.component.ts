@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {QrService} from '../../services/qr.service';
 
 @Component({
   selector: 'app-list',
@@ -47,7 +46,7 @@ ar: number[];
   qrValue: string;
 
 
-  constructor(private qrService: QrService) { }
+  constructor() { }
   ngOnInit() {
   }
 
