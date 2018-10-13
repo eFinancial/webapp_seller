@@ -1,34 +1,28 @@
-<body style="text-align:center;">
-<div ng-app="" *ngIf="!buyinProcessFinished">
-  <h1>
-    Neuer Kunde
-  </h1>
-  <div id="category">
-    <h3 id="p">Produkt</h3>
-    <h3 id="c"> Anzahl</h3>
-    <h3 id="b">Betrag (in €)</h3>
-    <h3 id="pa">Gezahlt (in €)</h3>
+<div class="wrapper">
+  <div class="info-wrapper">
+    <div class="input-wrapper" *ngIf="!buyinProcessFinished">
+      <input type="text" id="item-name" [(ngModel)]="product.name" placeholder="Produktname">
+      <input type="number" class="number-input" [(ngModel)]="product.count" id="anz" placeholder="Anzahl">
+      <input type="number" class="number-input" [(ngModel)]="product.itemPrice" id="num" step=".01" placeholder="Preis">
+      <button (click)="submit()">Hinzufügen</button>
+      <div class="list-wrapper">
+        <div class="single-item" *ngFor="let singleProduct of products" class="single-item">
+          <span class="item-name">{{singleProduct.name}}</span>
+          <span class="item-count"> {{singleProduct.count}} x</span>
+          <span class="item-price">{{singleProduct.itemPrice}}€</span>
+        </div>
+      </div>
+      <div class="submit-wrapper">
+        <button (click)="submit()">Produkt hinzufügen</button>
+        <button (click)="finishBuyingProcess()">Kauf abschließen</button>
+      </div>
+    </div>
+    <div *ngIf="buyinProcessFinished">
+      <div class="qrcode">
+        <ngx-qrcode [qrc-element-type]="elementType" [qrc-value] = "qrValue">
+        </ngx-qrcode>
+      </div>
+      <button class="done-button" (click)="resetBuyingProcess()">Transaktion abgeschlossen</button>
+    </div>
   </div>
-  <div>
-    <input type="text" [(ngModel)]="product.name" name="p1">
-    <input type="number" [(ngModel)]="product.count" name="c1" id="anz">
-    <input type="number" value="0" [(ngModel)]="product.itemPrice" id="num" step=".01" name="b1">
-    <input type="number" value="0" [(ngModel)]="invoice.customerPaid" id="paid" step=".01"><br>
-  </div>
-  <div *ngFor="let singleProduct of products">
-    {{singleProduct.count}}x
-    {{singleProduct.name}},
-    {{singleProduct.itemPrice}}€
-  </div>
-  <button (click)="submit()">Produkt hinzufügen</button>
-  <button (click)="finishBuyingProcess()">Kauf abschließen</button>
 </div>
-<div *ngIf="buyinProcessFinished">
-  <h1>
-    Scannen Sie den QR-Code ein.
-  </h1>
-  <ngx-qrcode [qrc-element-type]="elementType" [qrc-value] = "qrValue">
-  </ngx-qrcode>
-  <button (click)="resetBuyingProcess()">Nächster Kunde</button>
-</div>
-</body>

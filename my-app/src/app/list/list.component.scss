@@ -1,0 +1,109 @@
+.wrapper {
+  font-family: 'Lato', sans-serif;
+  $color-green-light: #5FAD56;
+  $color-green-dark: #4D9078;
+  $color-yellow: #F2C14F;
+  $color-orange: #F78154;
+
+  width: 105vw !important;
+  height: 105vh !important;
+  margin: -25px;
+  background-image: linear-gradient(to right, $color-green-dark, $color-green-light);
+  .info-wrapper {
+    background-color: white;
+    border-radius: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -400px;
+    width: 800px;
+    height: 500px;
+    text-align: center;
+    .input-wrapper {
+      margin-top: 15px;
+      input {
+        color: black;
+        padding-left: 15px;
+        margin: 5px 10px;
+        border-radius: 25px;
+        border: 1px solid $color-green-dark;
+        height: 35px;
+      }
+
+      #item-name {
+        width: 220px;
+      }
+      .number-input {
+        width: 150px;
+      }
+      button {
+        margin-left: 25px;
+        width: 100px;
+        height: 39px;
+        color: white;
+        background-color: $color-orange;
+        border-radius: 25px;
+        border: 0;
+        font-size: 14px;
+      }
+    }
+
+    .list-wrapper {
+      width: 800px;
+      margin: 25px 50px 0 0;
+      text-align: center;
+      .single-item {
+        border: 1px solid $color-green-dark;
+        border-radius: 10px;
+        margin: 15px 40px 0 40px;
+        padding: 10px;
+        width: 700px;
+        text-align: center;
+        box-shadow: 2px 2px 10px -3px grey;
+        span {
+          font-size: 17px;
+        }
+        .item-name {
+          color: $color-green-dark;
+          float: left;
+        }
+        .item-count {
+          font-style: italic;
+        }
+        .item-price {
+          float: right;
+        }
+      }
+    }
+
+    .submit-wrapper {
+      margin-top: 375px;
+      button {
+        margin-left: 25px;
+        width: 200px;
+        height: 39px;
+        color: white;
+        background-color: $color-orange;
+        border-radius: 25px;
+        font-size: 14px;
+        border: 0;
+      }
+    }
+
+    .qrcode {
+      margin-top: 25px;
+    }
+
+    .done-button {
+      margin-top: 85px;
+      width: 200px;
+      height: 39px;
+      color: white;
+      background-color: $color-orange;
+      border-radius: 25px;
+      font-size: 14px;
+      border: 0;
+    }
+  }
+}

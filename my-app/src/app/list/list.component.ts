@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
 ar: number[];
@@ -11,8 +11,8 @@ ar: number[];
   price2 = 0;
   product: Product = {
     name: '',
-    count: 0,
-    itemPrice: 0
+    count: null,
+    itemPrice: null
   };
   address: Address = {
     street: '',
