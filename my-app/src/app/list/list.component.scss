@@ -53,6 +53,7 @@
       width: 800px;
       margin: 25px 50px 0 0;
       text-align: center;
+
       .single-item {
         border: 1px solid $color-green-dark;
         border-radius: 10px;
@@ -78,7 +79,9 @@
     }
 
     .submit-wrapper {
-      margin-top: 375px;
+      top: 500px;
+      left: 35vw;
+      position: fixed;
       button {
         margin-left: 25px;
         width: 200px;

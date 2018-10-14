@@ -5,6 +5,7 @@
       <input type="number" class="number-input" [(ngModel)]="product.count" id="anz" placeholder="Anzahl">
       <input type="number" class="number-input" [(ngModel)]="product.itemPrice" id="num" step=".01" placeholder="Preis">
       <button (click)="submit()">Hinzufügen</button>
+
       <div class="list-wrapper">
         <div class="single-item" *ngFor="let singleProduct of products" class="single-item">
           <span class="item-name">{{singleProduct.name}}</span>
@@ -19,10 +20,12 @@
     </div>
     <div *ngIf="buyinProcessFinished">
       <div class="qrcode">
-        <ngx-qrcode [qrc-element-type]="elementType" [qrc-value] = "qrValue">
+        <ngx-qrcode [qrc-element-type]="elementType" [qrc-value]="qrValue">
         </ngx-qrcode>
       </div>
       <button class="done-button" (click)="resetBuyingProcess()">Transaktion abgeschlossen</button>
     </div>
+
   </div>
+
 </div>
