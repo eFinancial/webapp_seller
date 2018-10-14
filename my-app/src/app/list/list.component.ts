@@ -82,7 +82,7 @@ ar: number[];
     let text = '';
     const possible = 'abcdef0123456789';
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 32; i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
 
@@ -111,6 +111,16 @@ ar: number[];
 
   private resetProducts() {
     this.products = [];
+    this.invoice = {
+      date: '',
+      billNo: 0,
+      seller: null,
+      products: [],
+      totalCostBrutto: 0,
+      totalCostNetto: 0,
+      customerPaid: 0,
+      tax: 0
+    };
   }
 }
 
